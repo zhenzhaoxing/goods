@@ -1,0 +1,17 @@
+ //关于 categoryDao的讲解
+ /*
+			 * map {cid:xx, cname:xx, pid:xx, desc:xx, orderBy:xx}
+			 * Category{cid:xx, cname:xx, parent:(cid=pid), desc:xx}
+			 */
+ 由于 category没有对应的pid 但是 查找2级分类 需用 pid       
+ 方法是 先获取 db里面的 pid 然后封装到一个map中 这里面 有pid  
+ 写个方法toCategory 把map中的数据养蛇到 category 因为 parent 是新对象 （属性他也可以调用）只需要把它的Cid 设置为 pid就可以了
+ 
+ 
+ 
+       通过 父分类 查询子分类
+  给这个findByParent方法传pid   而这个pid那里来  他是从 parent这个对象 获取 cid得到的
+  
+  parent 的cid是从toCategoryList得到的 parent集合 
+  而这个集合 可以把多个Map(List<Map>)映射成多个Category(List<Category>)
+ 
